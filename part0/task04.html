@@ -1,0 +1,12 @@
+title Creating new note
+
+browser->server: User input is sent (POST)
+server-->browser: server asks to reload page 
+browser->server: HTTP GET .../main.css
+server-->browser: main.css
+browser->server: HTTP GET .../main.js
+server-->browser: main.js
+note left of browser: browser executesmain.js\ncode that requests json data
+browser->server: HTTP GET .../data.json
+server-->browser: data.json
+note left of browser: now the note, which user\ndid input, is also seen
