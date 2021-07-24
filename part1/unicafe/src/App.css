@@ -1,0 +1,28 @@
+body {
+    font-family: sans-serif;
+}
+
+button {
+    border: 1px solid black;
+    padding: 5px;
+    margin-right: 10px;
+    border-radius: 5px;
+    font-style: bold;
+    cursor: pointer;
+}
+
+.goodBtn {
+    background-color: rgb(102, 243, 8);
+}
+
+.neutralBtn {
+    background-color: rgb(142, 205, 247);
+}
+
+.badBtn {
+    background-color: rgb(255, 95, 95);
+}
+
+button:hover {
+    opacity: 0.8;
+}
