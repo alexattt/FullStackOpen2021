@@ -1,0 +1,16 @@
+body {
+  font-family: sans-serif;
+}
+
+button {
+  border: 1px solid black;
+  padding: 5px;
+  margin-right: 10px;
+  border-radius: 5px;
+  font-style: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
+}
