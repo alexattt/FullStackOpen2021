@@ -23,12 +23,10 @@ const PersonForm = ({persons, setPersons, newName, setNewName, newPhoneNumber, s
     }
     
     const handlePersonNameChange = (event) => {
-        console.log(event.target.value);
         setNewName(event.target.value);
     }
     
     const handlePersonNumberChange = (event) => {
-        console.log(event.target.value);
         setNewPhoneNumber(event.target.value);
     }
 
