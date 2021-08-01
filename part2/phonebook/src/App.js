@@ -20,6 +20,8 @@ const App = () => {
       })
   }, [])
 
+  // have to move axios parts to a service folder and separate file
+
   return (
     <div>
       <h2>Phonebook</h2>

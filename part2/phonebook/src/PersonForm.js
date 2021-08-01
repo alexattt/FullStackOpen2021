@@ -1,25 +1,30 @@
-import React, { useState } from 'react'
+import React from 'react'
+import axios from 'axios'
+
 
 const PersonForm = ({persons, setPersons, newName, setNewName, newPhoneNumber, setNewPhoneNumber}) => {
 
     const addPerson = (event) => {
-        event.preventDefault()
-        const personObject = {
-          name: newName,
-          number: newPhoneNumber,
-          id: persons.length + 1
-        }
-    
-        if (persons.some(p => p.name === newName)) {
-          alert(`${newName} already exists in the phonebook!`);
-          return;
-        } else {
-          setNewName(event.target.value);
-        }
-    
-        setPersons(persons.concat(personObject));
+      event.preventDefault()
+      const personObject = {
+        name: newName,
+        number: newPhoneNumber
+    }
+
+    if (persons.some(p => p.name === newName)) {
+      alert(`${newName} already exists in the phonebook!`);
+      return;
+    } else {
+      setNewName(event.target.value);
+    }
+
+    axios
+      .post('http://localhost:3001/persons', personObject)
+      .then(response => {
+        setPersons(persons.concat(response.data));
         setNewName('');
         setNewPhoneNumber('');
+      })
     }
     
     const handlePersonNameChange = (event) => {
@@ -33,9 +38,9 @@ const PersonForm = ({persons, setPersons, newName, setNewName, newPhoneNumber, s
     return (
         <form onSubmit={addPerson}> 
             <div>
-            name: <input value={newName} onChange={handlePersonNameChange}/>
+            name: <input value={newName || ''} onChange={handlePersonNameChange}/>
             <br></br>
-            number: <input value={newPhoneNumber} onChange={handlePersonNumberChange}/>
+            number: <input value={newPhoneNumber || ''} onChange={handlePersonNumberChange}/>
             </div>
             <div>
             <button type="submit">add</button>
