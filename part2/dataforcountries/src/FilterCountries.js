@@ -16,8 +16,8 @@ const FilterCountries = ({filteredCountries, showCountryData, buttonValue, handl
                     {
                         filteredCountries.map(country=> 
                             <div className="countryAndButton" key={country.alpha2Code}>
-                            <p> {country.name}</p>
-                            <button type="button" onClick={() => onClick(filteredCountries.indexOf(country))}>Show</button>
+                                <p> {country.name}</p>
+                                <button type="button" onClick={() => onClick(filteredCountries.indexOf(country))}>Show</button>
                             </div>
                         )
                     }
