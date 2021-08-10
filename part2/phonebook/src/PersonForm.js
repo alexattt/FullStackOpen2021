@@ -18,7 +18,9 @@ const PersonForm = ({persons, setPersons, newName, setNewName, newPhoneNumber, s
           personService
             .updatePerson(currentPerson.id, updatedPerson)
             .then(returnedPerson => {
-              setPersons(persons.map(p => p.id !== currentPerson.id ? p : returnedPerson))
+              setPersons(persons.map(p => p.id !== currentPerson.id ? p : returnedPerson));
+              setNewName('');
+              setNewPhoneNumber('');
             })
             .catch(error => {
               if ((error.response.data.error).includes('name')) {
