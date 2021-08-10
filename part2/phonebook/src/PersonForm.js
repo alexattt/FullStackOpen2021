@@ -19,11 +19,20 @@ const PersonForm = ({persons, setPersons, newName, setNewName, newPhoneNumber, s
             .updatePerson(currentPerson.id, updatedPerson)
             .then(returnedPerson => {
               setPersons(persons.map(p => p.id !== currentPerson.id ? p : returnedPerson))
+              setNewName('')
+              setNewPhoneNumber('')
             })
             .catch(error => {
-              setErrorMessage(
-                `${updatedPerson.name} was already deleted from the server!`
-              )
+              if ((error.response.data.error).includes('name')) {
+                setErrorMessage(
+                  'Name is too short, required length is at least 3 characters!'
+                )
+              }
+              if ((error.response.data.error).includes('number')) {
+                setErrorMessage(
+                  'Number is too short, required length is at least 8 characters!'
+                )
+              }
               setTimeout(() => {
                 setErrorMessage(null)
               }, 5000)
@@ -51,6 +60,21 @@ const PersonForm = ({persons, setPersons, newName, setNewName, newPhoneNumber, s
           setPersons(persons.concat(response.data));
           setNewName('');
           setNewPhoneNumber('');
+        })
+        .catch(error => {
+          if ((error.response.data.error).includes('name')) {
+            setErrorMessage(
+              'Name is too short, required length is at least 3 characters!'
+            )
+          }
+          if ((error.response.data.error).includes('number')) {
+            setErrorMessage(
+              'Number is too short, required length is at least 8 characters!'
+            )
+          }
+          setTimeout(() => {
+            setErrorMessage(null)
+          }, 5000)
         })
     }
     
