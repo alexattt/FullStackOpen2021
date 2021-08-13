@@ -57,8 +57,8 @@ const App = () => {
 
   return (
     <div className="main-container">
-      <h1 className="app-title">Blog List</h1>
       <div className="blogs-container">
+        <h1 className="app-title">Blog List</h1>
         {blogs.map(blog =>
           <Blog key={blog.id} blog={blog}/>
         )}
