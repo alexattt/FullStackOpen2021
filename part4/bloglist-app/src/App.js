@@ -8,7 +8,7 @@ const App = () => {
   const [newTitle, setNewTitle] = useState('')
   const [newAuthor, setNewAuthor] = useState('')
   const [newBlogUrl, setNewBlogUrl] = useState('')
-  const [newLikeAmount, setNewLikeAmount] = useState('')
+  const [newLikeAmount, setNewLikeAmount] = useState(0)
 
   useEffect(() => {
     blogService
@@ -48,12 +48,13 @@ const App = () => {
 
   const handleBlogUrlChange = (event) => {
     setNewBlogUrl(event.target.value)
-    setNewLikeAmount(Math.round(Math.random() * 100))
   }
 
-  // const handleLikesChange = (event) => {
-  //   setNewLikeAmount(event.target.value)
-  // }
+  const handleLikesChange = (event) => {
+    if (event.target.value != null) {
+      setNewLikeAmount(event.target.value)
+    }
+  }
 
   return (
     <div className="main-container">
@@ -78,10 +79,10 @@ const App = () => {
             value={newBlogUrl}
             onChange={handleBlogUrlChange}
           /> <br></br>
-          {/* Upvotes: <input
+          Upvotes: <input
             value={newLikeAmount}
             onChange={handleLikesChange}
-          /> <br></br> */}
+          /> <br></br>
           <button className="save-blog-btn" type="submit">Save</button>
         </form>
       </div> 
