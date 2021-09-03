@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Blog from './Blog.js'
+import BlogForm from './BlogForm.js'
 import ErrorMessage from './ErrorMessage.js'
 import Notification from './Notification.js'
 import blogService from './services/blogs'
@@ -8,10 +9,6 @@ import './App.css'
 
 const App = () => {
   const [blogs, setBlogs] = useState([]) 
-  const [newTitle, setNewTitle] = useState('')
-  const [newAuthor, setNewAuthor] = useState('')
-  const [newBlogUrl, setNewBlogUrl] = useState('')
-  const [newLikeAmount, setNewLikeAmount] = useState(0)
   const [errorMessage, setErrorMessage] = useState(null)
   const [notificationMessage, setNotificationMessage] = useState(null)
   const [username, setUsername] = useState('') 
@@ -63,15 +60,7 @@ const App = () => {
     window.location.reload();
   }
 
-  const addBlogListItem = (event) => {
-    event.preventDefault()
-    const blogObject = {
-      title: newTitle,
-      author: newAuthor,
-      url: newBlogUrl,
-      likes: newLikeAmount
-    }
-
+  const addBlogListItem = (blogObject) => {
     blogService
     .create(blogObject)
     .then(returnedBlog => {
@@ -80,29 +69,7 @@ const App = () => {
         setNotificationMessage(null)
       }, 3000)
       setBlogs(blogs.concat(returnedBlog))
-      setNewTitle('')
-      setNewAuthor('')
-      setNewBlogUrl('')
-      setNewLikeAmount('')
     })
-  }
-
-  const handleTitleChange = (event) => {
-    setNewTitle(event.target.value)
-  }
-
-  const handleAuthorChange = (event) => {
-    setNewAuthor(event.target.value)
-  }
-
-  const handleBlogUrlChange = (event) => {
-    setNewBlogUrl(event.target.value)
-  }
-
-  const handleLikesChange = (event) => {
-    if (event.target.value != null) {
-      setNewLikeAmount(event.target.value)
-    }
   }
 
   const loginForm = () => (
@@ -131,33 +98,16 @@ const App = () => {
     <div className="main-container">
       <div className="blogs-container">
         <h1 className="app-title">Blog List</h1>
-        {blogs.map(blog =>
-          <Blog key={blog.id} blog={blog}/>
+        {blogs
+          .sort(function(a, b) {
+            return b.likes - a.likes;
+          })
+          .map(blog =>
+            <Blog key={blog.id} blog={blog} blogs={blogs} setBlogs={setBlogs}/>
         )}
       </div>
       <Notification message={notificationMessage}/>
-      <div className="blog-form">
-        <h3>Add new awesome blog</h3>
-        <form onSubmit={addBlogListItem}>
-          Blog title: <input
-            value={newTitle}
-            onChange={handleTitleChange}
-          /> <br></br>
-          Blog author: <input
-            value={newAuthor}
-            onChange={handleAuthorChange}
-          /> <br></br>
-          Blog URL: <input
-            value={newBlogUrl}
-            onChange={handleBlogUrlChange}
-          /> <br></br>
-          Upvotes: <input
-            value={newLikeAmount}
-            onChange={handleLikesChange}
-          /> <br></br>
-          <button className="save-blog-btn" type="submit">Save</button>
-        </form>
-      </div>
+      <BlogForm createBlog={addBlogListItem} />
     </div>
   )
 
