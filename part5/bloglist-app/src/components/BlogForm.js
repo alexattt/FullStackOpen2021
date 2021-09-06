@@ -48,22 +48,26 @@ const BlogForm = ({ createBlog }) => {
       <div style={hideWhenVisible}>
         <button className="add-blog-btn" onClick={() => setBlogFormVisible(true)}>Add new blog</button>
       </div>
-      <div className="blog-form" style={showWhenVisible}>
+      <div id="blog-form" className="blog-form" style={showWhenVisible}>
         <h3>Add new awesome blog</h3>
         <form onSubmit={addBlogListItem}>
           Blog title: <input
+            id="blog-title-input"
             value={newTitle}
             onChange={handleTitleChange}
           /> <br></br>
           Blog author: <input
+            id="blog-author-input"
             value={newAuthor}
             onChange={handleAuthorChange}
           /> <br></br>
           Blog URL: <input
+            id="blog-url-input"
             value={newBlogUrl}
             onChange={handleBlogUrlChange}
           /> <br></br>
           Upvotes: <input
+            id="blog-likes-input"
             value={newLikeAmount}
             onChange={handleLikesChange}
           /> <br></br>

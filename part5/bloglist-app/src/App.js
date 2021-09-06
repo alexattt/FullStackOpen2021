@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import Blog from './Blog.js'
-import BlogForm from './BlogForm.js'
-import ErrorMessage from './ErrorMessage.js'
-import Notification from './Notification.js'
+import Blog from './components/Blog.js'
+import BlogForm from './components/BlogForm.js'
+import ErrorMessage from './components/ErrorMessage.js'
+import Notification from './components/Notification.js'
 import blogService from './services/blogs'
 import loginService from './services/login' 
 import './App.css'
@@ -72,6 +72,8 @@ const App = () => {
     })
   }
 
+  
+
   const loginForm = () => (
     <form className="login-form" onSubmit={handleLogin}>
       <div>
@@ -103,13 +105,29 @@ const App = () => {
             return b.likes - a.likes;
           })
           .map(blog =>
-            <Blog key={blog.id} blog={blog} blogs={blogs} setBlogs={setBlogs}/>
+            <Blog key={blog.id} blog={blog} blogs={blogs} setBlogs={setBlogs} onClickUpdateLikes={() => onClickUpdateLikes(blog.id, blog.user.id, blog.title, blog.author, blog.url, blog.likes)}/>
         )}
       </div>
       <Notification message={notificationMessage}/>
       <BlogForm createBlog={addBlogListItem} />
     </div>
   )
+
+  const onClickUpdateLikes = (blogId, uUser, uTitle, uAuthor, uUrl, uLikes) => {
+    const blogObject = {
+      user: uUser,
+      title: uTitle,
+      author: uAuthor,
+      url: uUrl,
+      likes: uLikes + 1
+    }
+
+    blogService
+      .updateLikes(blogId, blogObject)
+      .then(returnedBlog => {
+        setBlogs(blogs.map(b => b.id === blogId ? returnedBlog : b));
+      })
+  }
 
   return (
     <div>
@@ -129,3 +147,5 @@ const App = () => {
 }
 
 export default App 
+
+//TODO: 5.14. - 5.16.
