@@ -7,7 +7,7 @@ describe('Note app', function() {
       username: 'mluukkai',
       password: 'salainen'
     }
-    cy.request('POST', 'http://localhost:3001/api/users/', user) 
+    cy.request('POST', 'http://localhost:3001/api/users/', user)
     cy.visit('http://localhost:3000')
   })
 
