@@ -1,5 +1,3 @@
-import React from 'react'
-
 const noteReducer = (state = [], action) => {
   switch(action.type) {
     case 'NEW_NOTE':
