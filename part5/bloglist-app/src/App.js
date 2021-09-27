@@ -149,5 +149,3 @@ const App = () => {
 }
 
 export default App 
-
-//TODO: 5.14. - 5.16.
