@@ -35,6 +35,20 @@ export const addAnecdote = (content) => {
   }
 }
 
+export const voteNotification = (message) => {
+  return {
+    type: 'SET_NOTIFICATION',
+    message
+  }
+}
+
+export const addNotification = (message) => {
+  return {
+    type: 'SET_NOTIFICATION',
+    message
+  }
+}
+
 const initialState = anecdotesAtStart.map(asObject)
 
 const reducer = (state = initialState, action) => {
