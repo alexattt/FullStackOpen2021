@@ -5,10 +5,11 @@ import { addAnecdote, addNotification } from '../reducers/anecdoteReducer'
 const AnecdoteForm = () => {
   const dispatch = useDispatch()
 
-  const add = (event) => {
+  const add = async (event) => {
     event.preventDefault()
     const content = event.target.anecdote.value
     event.target.anecdote.value = ''
+
     dispatch(addAnecdote(content))
 
     dispatch(addNotification(`You added a new joke: ${content}`))
