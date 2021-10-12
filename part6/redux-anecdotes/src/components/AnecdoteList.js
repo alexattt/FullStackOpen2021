@@ -11,7 +11,9 @@ const AnecdoteList = () => {
         anecdote => anecdote.content.toLowerCase().includes(filter.toLowerCase())
       )
     }
-    return anecdotes
+    return anecdotes.sort(function(a, b) {
+      return b.votes - a.votes;
+    })
   })
 
 
