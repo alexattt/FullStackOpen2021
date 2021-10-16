@@ -4,17 +4,40 @@ import {
 } from "react-router-dom"
 import  { useField } from './hooks'
 import React, { useState } from 'react'
+import {
+  Container,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableRow,
+  Paper,
+  Input,
+  Button,
+  AppBar,
+  Toolbar
+} from '@material-ui/core'
+import { Alert } from '@material-ui/lab'
+
+import './App.css'
 
 const AnecdoteList = ({ anecdotes }) => (
   <div>
     <h2>Anecdotes</h2>
-    <ul>
-      {anecdotes.map(anecdote =>
-        <li key={anecdote.id}>
-          <Link to={`/anecdotes/${anecdote.id}`}>{anecdote.content}</Link>
-        </li>
-      )}
-    </ul>
+
+    <TableContainer component={Paper}>
+      <Table>
+        <TableBody>
+          {anecdotes.map(anecdote =>
+            <TableRow key={anecdote.id}>
+              <TableCell>
+                <Link to={`/anecdotes/${anecdote.id}`}>{anecdote.content}</Link>
+              </TableCell>
+            </TableRow>
+          )}
+        </TableBody>
+      </Table>
+    </TableContainer>
   </div>
 )
 
@@ -26,6 +49,16 @@ const Anecdote = ({ anecdotes }) => {
       <h2>{anecdote.content}</h2>
       <p>has {anecdote.votes} votes</p>
       <p>for more info see <a href={anecdote.info} target="_blank" rel="noreferrer">{anecdote.info}</a></p>
+    </div>
+  )
+}
+
+const Notification = ({ notification }) => {
+  return (
+    <div>
+      <Alert severity="success">
+        {notification}
+      </Alert>
     </div>
   )
 }
@@ -45,9 +78,8 @@ const About = () => (
 )
 
 const Footer = () => (
-  <div>
+  <div class='footer'>
     Anecdote app for <a href='https://courses.helsinki.fi/fi/tkt21009'>Full Stack -websovelluskehitys</a>.
-
     See <a href='https://github.com/fullstack-hy/routed-anecdotes/blob/master/src/App.js'>https://github.com/fullstack-hy2019/routed-anecdotes/blob/master/src/App.js</a> for the source code.
   </div>
 )
@@ -81,20 +113,18 @@ const CreateNew = (props) => {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        content: 
-        <input name='content' type={contentField.type} value={contentField.value} onChange={contentField.onChange}/> 
+    <div class='flex'>
+      <h2>Create new, awesome anecdote</h2>
+      <form onSubmit={handleSubmit} class="joke-form">
+        <Input placeholder='joke' name='content' type={contentField.type} value={contentField.value} onChange={contentField.onChange} />
         <br/> 
-        author:
-        <input name='author' type={authorField.type} value={authorField.value} onChange={authorField.onChange} />
+        <Input placeholder='author' name='author' type={authorField.type} value={authorField.value} onChange={authorField.onChange} />
         <br /> 
-        url for more info:
-        <input name='info' type={infoField.type} value={infoField.value} onChange={infoField.onChange} />
+        <Input placeholder='URL for more info' name='info' type={infoField.type} value={infoField.value} onChange={infoField.onChange} />
         <br /> 
-        <button>create</button>
+        <Button type='Submit' size='small' variant="outlined">Create</Button>
+        <Button type='reset' size='small' onClick={()=> resetFields()}>Reset</Button>
       </form>
-      <button onClick={()=> resetFields()}>reset</button>
     </div>
   )
 }
@@ -118,14 +148,17 @@ const App = () => {
   ])
 
   const [notification, setNotification] = useState('')
+  const [alert, setAlert] = useState(false)
 
   const addNew = (anecdote) => {
     anecdote.id = (Math.random() * 10000).toFixed(0)
+    setAlert(true)
     setNotification(
-      `a new anecdote ${anecdote.content} created!`
+      `A new anecdote "${anecdote.content}" created!`
     )
     setTimeout(() => {
       setNotification(null)
+      setAlert(false)
     }, 10000)
     setAnecdotes(anecdotes.concat(anecdote))
   }
@@ -150,31 +183,43 @@ const App = () => {
 
   return (
     <div>
-      <Router>
-        <div>
-          <Link style={padding} to="/">anecdotes</Link>
-          <Link style={padding} to="/create">create new</Link>
-          <Link style={padding} to="/about">about</Link>
-        </div>
+      <Container>
+        <Router>
+          <AppBar position="static">
+            <Toolbar>
+              <Button color="inherit" component={Link} to="/">
+                anecdotes
+              </Button>
+              <Button color="inherit" component={Link} to="/create">
+                create new
+              </Button>
+              <Button color="inherit" component={Link} to="/about">
+                about
+              </Button>                               
+            </Toolbar>
+          </AppBar>
 
-        <p>{notification}</p>
+          {alert === true &&
+            <Notification notification={notification} />
+          }
 
-        <Switch>
-        <Route path="/anecdotes/:id">
-          <Anecdote anecdotes={anecdotes} />
-        </Route>
-          <Route path="/create">
-            <CreateNew addNew={addNew} />
+          <Switch>
+          <Route path="/anecdotes/:id">
+            <Anecdote anecdotes={anecdotes} />
           </Route>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/">
-            <AnecdoteList anecdotes={anecdotes} />
-          </Route>
-        </Switch>
-      </Router>
-      <Footer />
+            <Route path="/create">
+              <CreateNew addNew={addNew} />
+            </Route>
+            <Route path="/about">
+              <About />
+            </Route>
+            <Route path="/">
+              <AnecdoteList anecdotes={anecdotes} />
+            </Route>
+          </Switch>
+        </Router>
+        <Footer />
+      </Container>
     </div>
   )
 }
