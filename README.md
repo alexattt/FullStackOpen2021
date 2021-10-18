@@ -21,11 +21,15 @@ My repository of exercises for MOOC Full Stack Open 2021 by University of Helsin
 </p>
 
 <h3>Part4</h3>
-<p>Testing Express servers, user administration. Learning how to test backend with supertest. How async/await works and how to use it. </br>
+<p>Testing Express servers, user administration (from backend side). Learning how to test backend with supertest. How async/await works and how to use it. </br>
    Creating user schema with mongoose, allowing user registration (implemented in backend), hashing passwords with bcrypt. </br>
    Implementing basic token authentication - allowing user to stay logged in for an hour, while token expires.
    Repository for backend of Bloglist app is available here - <a href="https://github.com/alexattt/FSP4-BlogListApp" target="_blank">Part4 Backend Repo</a></br>
 </p>
 
 <h3>Part5</h3>
-<p></p>
+<p>Testing React apps. Learning about how to use Jest to test frontend, basics of E2E testing with Cypress.</p>
+
+<h3>Part6</h3>
+<p>State management with Redux. Getting introduced to Redux. How to combine multiple reducers. Learning how to use Redux DevTools. </br>
+   mapStateToProps and mapDispatchToProps. </p>
