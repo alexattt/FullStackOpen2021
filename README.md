@@ -19,3 +19,13 @@ My repository of exercises for MOOC Full Stack Open 2021 by University of Helsin
    Learning MongoDB basics - creating account, cluster, databases. Using MongoDB in example and exercise apps, general configuration, creating schemas. </br>
    Learning what is ESLint and how to use it in the project (and why to use it at all).
 </p>
+
+<h3>Part4</h3>
+<p>Testing Express servers, user administration. Learning how to test backend with supertest. How async/await works and how to use it. </br>
+   Creating user schema with mongoose, allowing user registration (implemented in backend), hashing passwords with bcrypt. </br>
+   Implementing basic token authentication - allowing user to stay logged in for an hour, while token expires.
+   Repository for backend of Bloglist app is available here - <a href="https://github.com/alexattt/FSP4-BlogListApp" target="_blank">Part3 Backend Repo</a></br>
+</p>
+
+<h3>Part5</h3>
+<p></p>
