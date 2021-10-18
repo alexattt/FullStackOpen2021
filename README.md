@@ -14,7 +14,7 @@ My repository of exercises for MOOC Full Stack Open 2021 by University of Helsin
 <p>Programming a server with NodeJS and Express. Use of Node.js and Express, nodemon, morgan. </br> 
    Testing HTTP requests with Postman, also learning how to use VSCode REST client. 
    Learning how to connect frontend with backend (adding frontend build to backend), deploy app to Heroku. </br>
-   Repository for this part, which was deployed - <a href="https://github.com/alexattt/FullStack-part3" target="_blank">Part3 Repo</a>
+   Repository for this part, which was deployed - <a href="https://github.com/alexattt/FullStack-part3" target="_blank">Part3 Repo</a> </br>
    Learning a little bit about node app debugging in VSCode. </br>
    Learning MongoDB basics - creating account, cluster, databases. Using MongoDB in example and exercise apps, general configuration, creating schemas. </br>
    Learning what is ESLint and how to use it in the project (and why to use it at all).
