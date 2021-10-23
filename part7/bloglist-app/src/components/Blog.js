@@ -1,6 +1,9 @@
 import React, {useState} from 'react' 
 import PropTypes from 'prop-types'
 import blogService from '../services/blogs'
+import {
+  Link
+} from "react-router-dom"
 
 const Blog = ({ blog, blogs, setBlogs, onClickUpdateLikes }) => {
   const [blogDetailsVisible, setBlogDetailsVisible] = useState(false)
@@ -21,12 +24,14 @@ const Blog = ({ blog, blogs, setBlogs, onClickUpdateLikes }) => {
   return (
     <div className="blog-container">
       <div style={hideWhenVisible}>
-        <h4>{blog.title}</h4>
+        {/* <h4>{blog.title}</h4> */}
+        <h4><Link to={`/blogs/${blog.id}`}>{blog.title}</Link></h4>
         <p className="blog-author">by {blog.author}</p>
         <button className="view-details-btn" onClick={() => setBlogDetailsVisible(true)}>View</button>
       </div>
       <div className="show-all-blog-info" style={showWhenVisible}>
-        <h4>{blog.title}</h4>
+        {/* <h4>{blog.title}</h4> */}
+        <h4><Link to={`/blogs/${blog.id}`}>{blog.title}</Link></h4>
         <p className="blog-author">by {blog.author}</p>
         <a href={blog.url} target="_blank" rel="noreferrer">{blog.url}</a>
         <div className="upvotes-count">

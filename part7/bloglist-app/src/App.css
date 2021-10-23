@@ -12,9 +12,32 @@
   align-items: center;
 }
 
+.user-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.added-blogs {
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.user-blogs {
+  list-style-type:none;
+  text-align: center;
+}
+
 .app-title {
   margin-top: 50px;
   margin-bottom: 10px;
+}
+
+.list-items {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .login-form {
@@ -61,6 +84,7 @@
   flex-direction: column;
   margin-right: 50px;
   margin-top: 10px;
+  margin-bottom: 30px;
   align-items: flex-end;
   height: auto;
 }

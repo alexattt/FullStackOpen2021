@@ -2,6 +2,8 @@
 import axios from 'axios'
 const baseUrl = 'http://localhost:3003/api/blogs'
 
+const baseUrlUsers = 'http://localhost:3003/api/users'
+
 let token = null
 
 const setToken = newToken => {
@@ -10,6 +12,11 @@ const setToken = newToken => {
 
 const getAll = () => {
   const request = axios.get(baseUrl)
+  return request.then(response => response.data)
+}
+
+const getAllUsers = () => {
+  const request = axios.get(baseUrlUsers)
   return request.then(response => response.data)
 }
 
@@ -40,4 +47,4 @@ const deleteBlog = async (blogId) => {
   return response.data
 }
 
-export default { getAll, create, setToken, updateLikes, deleteBlog }
+export default { getAll, getAllUsers, create, setToken, updateLikes, deleteBlog }

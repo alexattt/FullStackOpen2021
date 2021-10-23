@@ -8,11 +8,56 @@ import { useDispatch } from 'react-redux'
 import blogService from './services/blogs'
 import loginService from './services/login' 
 import { notificationMessage } from './reducers/notificationReducer.js'
+import {
+  BrowserRouter as Router,
+  Switch, Route, Link, useParams
+} from "react-router-dom"
 import './App.css'
+
+const UserView = ({users}) => {
+  const id = useParams().id
+  const user = users.find(u => u.id === id) 
+  if (user === undefined) {
+    return null
+  }
+
+  return (
+    <div className="main-container">
+      <h2>{user.name}</h2>
+      <h4 className="added-blogs">Added blogs</h4>
+      <ul className="user-blogs">
+        {user.blogs
+          .map(blog =>
+            <li key={blog.id} className="list-items">{blog.title}</li>
+        )}
+      </ul>
+    </div>
+  )
+}
+
+const BlogView = ({blogs, onClickUpdateLikes}) => {
+  const id = useParams().id
+  const blog = blogs.find(b => b.id === id) 
+  if (blog === undefined) {
+    return null
+  }
+  return (
+    <div className="main-container">
+      <h4>{blog.title}</h4>
+      <p className="blog-author">by {blog.author}</p>
+      <a href={blog.url} target="_blank" rel="noreferrer">{blog.url}</a>
+      <div>
+        {blog.likes} <button className="like-btn" onClick={()=>onClickUpdateLikes(blog.id, blog.user.id, blog.title, blog.author, blog.url, blog.likes)}>&#x2764;</button>
+      </div>
+    </div>
+  )
+}
+
 
 const App = (props) => {
   const [blogs, setBlogs] = useState([]) 
-  const [errorMessage, setErrorMessage] = useState(null)
+  const [users, setUsers] = useState([]) 
+   const [errorMessage, setErrorMessage] = useState(null)
   //const [notificationMessage, setNotificationMessage] = useState(null)
   const [username, setUsername] = useState('') 
   const [password, setPassword] = useState('') 
@@ -21,6 +66,11 @@ const App = (props) => {
   const dispatch = useDispatch()
 
   useEffect(() => {
+    blogService
+      .getAllUsers()
+      .then(users => {
+        setUsers(users)
+      })
     blogService
       .getAll()
       .then(initialBlogs => {
@@ -69,10 +119,6 @@ const App = (props) => {
     blogService
     .create(blogObject)
     .then(returnedBlog => {
-      // setNotificationMessage(`A new blog ${blogObject.title} by ${blogObject.author} added!`)
-      // setTimeout(() => {
-      //   setNotificationMessage(null)
-      // }, 3000)
       props.notificationMessage(`A new blog ${blogObject.title} by ${blogObject.author} added!`)
       setTimeout(() => {
         props.notificationMessage("")
@@ -80,8 +126,6 @@ const App = (props) => {
       setBlogs(blogs.concat(returnedBlog))
     })
   }
-
-  
 
   const loginForm = () => (
     <form className="login-form" onSubmit={handleLogin}>
@@ -125,6 +169,18 @@ const App = (props) => {
     </div>
   )
 
+  const userList = () => (
+    <div className="main-container">
+      <h2>Users</h2>
+      <div className="user-container">
+        <ul>
+          {users.map(user=>
+            <li key={user.id} className="list-items"><Link to={`/users/${user.id}`}>{user.name}</Link> has created <strong>{user.blogs.length}</strong> blogs</li>)}
+        </ul>
+      </div>
+    </div>
+  )
+
   const onClickUpdateLikes = (blogId, uUser, uTitle, uAuthor, uUrl, uLikes) => {
     const blogObject = {
       user: uUser,
@@ -151,7 +207,22 @@ const App = (props) => {
             <p>{user.name} logged-in</p>
             <button className="logout-btn" type="button" onClick={handleLogout}>Logout</button>
           </div>
-          {blogsList()}
+          <Router>
+            <Switch>
+              <Route path="/users/:id">
+                <UserView users={users}/>
+              </Route>
+              <Route path="/blogs/:id">
+                <BlogView blogs={blogs} onClickUpdateLikes={onClickUpdateLikes}/>
+              </Route>
+              <Route path="/users">
+                {userList()}
+              </Route>
+              <Route path="/">
+                {blogsList()}
+              </Route>
+            </Switch>
+          </Router>
         </div>
       } 
     </div>
