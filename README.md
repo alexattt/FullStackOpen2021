@@ -33,3 +33,8 @@ My repository of exercises for MOOC Full Stack Open 2021 by University of Helsin
 <h3>Part6</h3>
 <p>State management with Redux. Getting introduced to Redux. How to combine multiple reducers. Learning how to use Redux DevTools. </br>
    mapStateToProps and mapDispatchToProps. </p>
+
+<h3>Part7</h3>
+<p>Mostly learning about react router, how to create custom hooks (did tasks about these topics). Learned what is Webpack and what it does.</br>
+   Learned more about app styling with different libraries (React Bootstrap, MaterialUI were covered and other libraries were mentioned). </br>
+   Improved frontend of bloglist app made in part4. </p>
