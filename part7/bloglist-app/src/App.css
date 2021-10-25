@@ -30,7 +30,7 @@
   text-align: center;
 }
 
-.app-title {
+.page-title {
   margin-top: 50px;
   margin-bottom: 10px;
 }
@@ -82,11 +82,10 @@
 .log-info {
   display: flex;
   flex-direction: column;
-  margin-right: 50px;
-  margin-top: 10px;
-  margin-bottom: 30px;
   align-items: flex-end;
   height: auto;
+  position: absolute;
+  right: 30px;
 }
 
 .blogs-container {
@@ -119,6 +118,11 @@
 .blog-author {
   font-size: 12px;
   font-style: italic;
+}
+
+.blog-url {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .blog-form {
@@ -159,6 +163,11 @@ input:focus-visible {
   margin-left: 30%;
   color: white;
   background-color: rgb(0, 90, 224);
+}
+
+.cancel-btn {
+  margin-left: 32%;
+  margin-bottom: 20px;
 }
 
 .save-blog-btn:hover {

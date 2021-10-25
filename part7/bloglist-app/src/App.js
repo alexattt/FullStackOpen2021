@@ -12,6 +12,13 @@ import {
   BrowserRouter as Router,
   Switch, Route, Link, useParams
 } from "react-router-dom"
+import {
+  Button,
+  IconButton,
+  AppBar,
+  Toolbar,
+  Container
+} from '@material-ui/core'
 import './App.css'
 
 const UserView = ({users}) => {
@@ -23,7 +30,7 @@ const UserView = ({users}) => {
 
   return (
     <div className="main-container">
-      <h2>{user.name}</h2>
+      <h2 className="page-title">{user.name}</h2>
       <h4 className="added-blogs">Added blogs</h4>
       <ul className="user-blogs">
         {user.blogs
@@ -43,9 +50,9 @@ const BlogView = ({blogs, onClickUpdateLikes}) => {
   }
   return (
     <div className="main-container">
-      <h4>{blog.title}</h4>
+      <h4 className="page-title">{blog.title}</h4>
       <p className="blog-author">by {blog.author}</p>
-      <a href={blog.url} target="_blank" rel="noreferrer">{blog.url}</a>
+      <a href={blog.url} target="_blank" rel="noreferrer" className="blog-url">{blog.url}</a>
       <div>
         {blog.likes} <button className="like-btn" onClick={()=>onClickUpdateLikes(blog.id, blog.user.id, blog.title, blog.author, blog.url, blog.likes)}>&#x2764;</button>
       </div>
@@ -154,7 +161,7 @@ const App = (props) => {
   const blogsList = () => (
     <div className="main-container">
       <div className="blogs-container">
-        <h1 className="app-title">Blog List</h1>
+        <h1 className="page-title">Blog List</h1>
         {blogs
           .sort(function(a, b) {
             return b.likes - a.likes;
@@ -171,7 +178,7 @@ const App = (props) => {
 
   const userList = () => (
     <div className="main-container">
-      <h2>Users</h2>
+      <h1 className="page-title">Users</h1>
       <div className="user-container">
         <ul>
           {users.map(user=>
@@ -198,34 +205,46 @@ const App = (props) => {
   }
 
   return (
-    <div>
-      <ErrorMessage errorMessage={errorMessage}/>
-      {user === null ?
-        loginForm():
-        <div>
-          <div className="log-info">
-            <p>{user.name} logged-in</p>
-            <button className="logout-btn" type="button" onClick={handleLogout}>Logout</button>
+    <Container>
+      <div>
+        <ErrorMessage errorMessage={errorMessage}/>
+        {user === null ?
+          loginForm():
+          <div>
+            <Router>
+              <AppBar position="static"  style={{ background: 'rgb(97 152 234)' }}>
+                <Toolbar>
+                  <Button color="inherit" component={Link} to="/">
+                    Blogs
+                  </Button>
+                  <Button color="inherit" component={Link} to="/users">
+                    users
+                  </Button>
+                  <div className="log-info">
+                    <p>{user.name} logged-in</p>
+                    <button className="logout-btn" type="button" onClick={handleLogout}>Logout</button>
+                  </div>                 
+                </Toolbar>
+              </AppBar>
+              <Switch>
+                <Route path="/users/:id">
+                  <UserView users={users}/>
+                </Route>
+                <Route path="/blogs/:id">
+                  <BlogView blogs={blogs} onClickUpdateLikes={onClickUpdateLikes}/>
+                </Route>
+                <Route path="/users">
+                  {userList()}
+                </Route>
+                <Route path="/">
+                  {blogsList()}
+                </Route>
+              </Switch>
+            </Router>
           </div>
-          <Router>
-            <Switch>
-              <Route path="/users/:id">
-                <UserView users={users}/>
-              </Route>
-              <Route path="/blogs/:id">
-                <BlogView blogs={blogs} onClickUpdateLikes={onClickUpdateLikes}/>
-              </Route>
-              <Route path="/users">
-                {userList()}
-              </Route>
-              <Route path="/">
-                {blogsList()}
-              </Route>
-            </Switch>
-          </Router>
-        </div>
-      } 
-    </div>
+        } 
+      </div>
+    </Container>
   )
 }
 
