@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useMutation } from '@apollo/client'
 import { EDIT_BIRTH_YEAR } from './queries'
 
-const YearForm = ({ setError }) => {
+const YearForm = ({ setError, authors }) => {
   const [name, setName] = useState('')
   // had to use setBornTo instead of year, because it was used in graphql query
   const [setBornTo, setBirthYear] = useState('')
@@ -30,19 +30,19 @@ const YearForm = ({ setError }) => {
       <h2>change birth year</h2>
 
       <form onSubmit={submit}>
-        <div>
-          name <input
-            value={name}
-            onChange={({ target }) => setName(target.value)}
-          />
-        </div>
+        <select onChange={({ target }) => setName(target.value)}>
+        <option></option>
+          {authors.map((author) => (
+            <option value={author.name}>{author.name}</option>
+          ))}
+        </select>
         <div>
           birth year <input
             value={setBornTo}
             onChange={({ target }) => setBirthYear(parseInt(target.value))}
           />
         </div>
-        <button type='submit'>change birth year</button>
+        <button type='submit'>update</button>
       </form>
     </div>
   )
