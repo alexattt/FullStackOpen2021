@@ -44,5 +44,5 @@ My repository of exercises for MOOC Full Stack Open 2021 by University of Helsin
    Also how to connect GraphQL oriented backend with react frontend (Apollo client) and use MongoDB to save data.</br></p>
    
    
-<h5>My certificate of course completion</h5>
-<a href="https://studies.cs.helsinki.fi/stats/api/certificate/fullstackopen/en/0e4fe4d55c09793e0f7bd5dfe6c48248">https://studies.cs.helsinki.fi/stats/api/certificate/fullstackopen/en/0e4fe4d55c09793e0f7bd5dfe6c48248</a>
+<h1>My certificate of course completion</h1>
+<a href="https://studies.cs.helsinki.fi/stats/api/certificate/fullstackopen/en/0e4fe4d55c09793e0f7bd5dfe6c48248" target="_blank">https://studies.cs.helsinki.fi/stats/api/certificate/fullstackopen/en/0e4fe4d55c09793e0f7bd5dfe6c48248</a>
