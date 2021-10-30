@@ -38,3 +38,7 @@ My repository of exercises for MOOC Full Stack Open 2021 by University of Helsin
 <p>Mostly learning about react router, how to create custom hooks (did tasks about these topics). Learned what is Webpack and what it does.</br>
    Learned more about app styling with different libraries (React Bootstrap, MaterialUI were covered and other libraries were mentioned). </br>
    Improved frontend of bloglist app made in part4. </p>
+
+<h3>Part8 (additional part, optional)</h3>
+<p>This part is focused on GraphQL. Learned about the difference between REST and GraphQL, how to use GraphQL in a project (with Apollo server) and what are the advantages of      it.</br>      
+   Also how to connect GraphQL oriented backend with react frontend (Apollo client) and use MongoDB to save data.</br></p>
