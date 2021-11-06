@@ -45,7 +45,7 @@ My repository of exercises for MOOC Full Stack Open 2021 by University of Helsin
    
 <h3>Party9 (additional part, optional)</h3>
 <p>All things, everything Typescript. Basically learning how to use Typescript both for back-end and for front-end as well. </br>
-   What are the benefits of Typescript and how to use it properly.
+   What are the benefits of Typescript and how to use it properly. </br>
    In this part built a Patientor app, the code can be found in my repositories (part9-typescript/patient for backend and patientor-main for frontend). </br>
 </p>
    
