@@ -43,6 +43,15 @@ My repository of exercises for MOOC Full Stack Open 2021 by University of Helsin
 <p>This part is focused on GraphQL. Learned about the difference between REST and GraphQL, how to use GraphQL in a project (with Apollo server) and what are the advantages of      it.</br>      
    Also how to connect GraphQL oriented backend with react frontend (Apollo client) and use MongoDB to save data.</br></p>
    
+<h3>Party9 (additional part, optional)</h3>
+<p>All things, everything Typescript. Basically learning how to use Typescript both for back-end and for front-end as well. </br>
+   What are the benefits of Typescript and how to use it properly.
+   In this part built a Patientor app, the code can be found in my repositories (part9-typescript/patient for backend and patientor-main for frontend). </br>
+</p>
    
 <h1>My certificate of course completion</h1>
 <a href="https://studies.cs.helsinki.fi/stats/api/certificate/fullstackopen/en/0e4fe4d55c09793e0f7bd5dfe6c48248" target="_blank">https://studies.cs.helsinki.fi/stats/api/certificate/fullstackopen/en/0e4fe4d55c09793e0f7bd5dfe6c48248</a>
+
+<h1>My certificate of Typescript part completion</h1>
+<a href="https://studies.cs.helsinki.fi/stats/api/certificate/fs-typescript/en/8762cf8879986cf49e3fb3bf17e0cee2" target="_blank">
+https://studies.cs.helsinki.fi/stats/api/certificate/fs-typescript/en/8762cf8879986cf49e3fb3bf17e0cee2</a>
