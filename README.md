@@ -48,6 +48,11 @@ My repository of exercises for MOOC Full Stack Open 2021 by University of Helsin
    What are the benefits of Typescript and how to use it properly. </br>
    In this part built a Patientor app, the code can be found in my repositories (part9-typescript/patient for backend and patientor-main for frontend). </br>
 </p>
+
+<h3>Part10 (additional part, optional)</h3>
+<p>Learning React Native by building an app, using Expo. In general it was really interesting, a good insight into mobile development with React Native. </br>
+   Looking forward to learn more about it.
+</p>
    
 <h1>My certificate of course completion</h1>
 <a href="https://studies.cs.helsinki.fi/stats/api/certificate/fullstackopen/en/0e4fe4d55c09793e0f7bd5dfe6c48248" target="_blank">https://studies.cs.helsinki.fi/stats/api/certificate/fullstackopen/en/0e4fe4d55c09793e0f7bd5dfe6c48248</a>
